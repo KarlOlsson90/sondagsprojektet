@@ -35,7 +35,9 @@ function App() {
   }
 
   useEffect(() => {
-
+    userRef.on("value", (snapshot) => {
+      console.log(snapshot.child("user").val())
+    })
 }, []);
 
   return (
