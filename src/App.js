@@ -9,21 +9,24 @@ function App() {
 
   const database = firebase.database()
   const userRef = database.ref()
+  const testRef = database.ref("user")
 
   const [firstNameInput, setFirstNameInput] = useState("")
   
   const [lastNameInput, setLastNameInput] = useState("")
-  console.log("firstname: ", firstNameInput)
-  console.log("lastname: ", lastNameInput)
+
 
   const [user, setUser] = useState({firstName: "", lastName: ""})
 
   function saveNameData(){
     setUser({firstName: firstNameInput, lastName: lastNameInput})
+    testRef.push({firstName: firstNameInput, lastName: lastNameInput})
+
+    console.log("här!", testRef)
   }
 
   function testFetch() {
-    console.log("userRef: ", userRef)
+
     const url = userRef + ".json"
     fetch(url, {method: "POST",
     body: JSON.stringify(user)})
